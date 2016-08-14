@@ -1,2 +1,2 @@
 # vpm
-Volunteer Project Management
+Volunteer domain.Project Management
