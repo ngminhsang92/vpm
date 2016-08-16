@@ -13,6 +13,48 @@ public class Service {
     private long id;
     private String name;
     private String description;
-    @OneToMany
-    private List<Task> tasks;
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private Task task;
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private UserRole owner;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Task getTask() {
+        return task;
+    }
+
+    public void setTask(Task task) {
+        this.task = task;
+    }
+
+    public UserRole getOwner() {
+        return owner;
+    }
+
+    public void setOwner(UserRole owner) {
+        this.owner = owner;
+    }
 }

@@ -2,6 +2,8 @@ package dao;
 
 import domain.CrudRespository;
 import domain.Task;
+import org.hibernate.SessionFactory;
+import util.HibernateUtil;
 
 import java.util.List;
 
@@ -9,31 +11,22 @@ import java.util.List;
  * Created by Minh Sang on 8/14/2016.
  */
 public class TaskDao implements CrudRespository<Task, Long> {
-    public void create(Task entity) {
 
+    private SessionFactory sf = HibernateUtil.getSessionFactory();
+
+    public void create(Task entity) {
+        sf.getCurrentSession().persist(entity);
     }
 
     public void update(Task entity) {
-
+        sf.getCurrentSession().saveOrUpdate(entity);
     }
 
-    public Task findOne(Long id) {
-        return null;
+    public Task get(Long id) {
+        return (Task) sf.getCurrentSession().get(Task.class, id);
     }
 
-    public List<Task> findAll() {
-        return null;
-    }
-
-    public boolean exist(Long id) {
-        return false;
-    }
-
-    public long count() {
-        return 0;
-    }
-
-    public void delete(Long id) {
-
+    public void delete(Task entity) {
+        sf.getCurrentSession().delete(entity);
     }
 }

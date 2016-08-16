@@ -10,13 +10,7 @@ public interface CrudRespository<E, I> {
 
     void update(E entity);
 
-    E findOne(I id);
+    E get(I id);
 
-    List<E> findAll();
-
-    boolean exist(I id);
-
-    long count();
-
-    void delete(I id);
+    void delete(E entity);
 }
